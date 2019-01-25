@@ -8,10 +8,10 @@
 
 #include <unordered_map>
 
-#include <VapourSynth/VapourSynth.h>
-#include <VapourSynth/VSHelper.h>
+#include "VapourSynth.h"
+#include "VSHelper.h"
 
-#include <opencv2/core.hpp>
+#include "core.hpp"
 
 #ifdef _DEBUG
 #pragma comment(lib, "opencv_core343d.lib")
@@ -540,12 +540,13 @@ static void VS_CC mxCreate(const VSMap *in, VSMap *out, void *userData, VSCore *
 
 		d.hPred = 0;
 
-		if (!mx.IsInit()) {
-			mx.LoadDll(nullptr);
+//		if (!mx.IsInit()) {
+//			mx.LoadDll(nullptr);
 
-			if (!mx.IsInit()) {
+//			if (!mx.IsInit()) {
+		if (!mx.IsInit()) {
 				throw std::string{ "Cannot load MXNet. Please install MXNet" };
-			}
+//			}
 		}
 
 		// Create Predictor

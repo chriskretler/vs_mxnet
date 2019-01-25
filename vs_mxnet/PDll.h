@@ -9,8 +9,8 @@
 #if !defined (_PDLL_H_)
 #define _PDLL_H_
 
-#include <windows.h>
-#include <winbase.h>
+//#include <windows.h>
+//#include <winbase.h>
 
 #define FUNC_LOADED 3456
 

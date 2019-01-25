@@ -1,6 +1,6 @@
 #pragma once
 
-#include "PDll.h"
+//#include "PDll.h"
 
 /*! \brief manually define unsigned int */
 typedef unsigned int mx_uint;
@@ -13,20 +13,37 @@ typedef void *NDListHandle;
 
 #include <string>
 
-class MXNet : public PDLL
+//class MXNet : public PDLL
+class MXNet
 {
 public:
 	//declare our functions
-	DECLARE_FUNCTION10(int, MXPredCreate, const char*, const void*, int, int, int, mx_uint, const char**, const mx_uint*, const mx_uint*, PredictorHandle*)
+	//DECLARE_FUNCTION10(int, MXPredCreate, const char*, const void*, int, int, int, mx_uint, const char**, const mx_uint*, const mx_uint*, PredictorHandle*)
+	int MXPredCreate(const char*, const void*, int, int, int, mx_uint, const char**, const mx_uint*, const mx_uint*, PredictorHandle*);
 
-	DECLARE_FUNCTION4(int, MXPredSetInput, PredictorHandle, const char*, const mx_float*, mx_uint)
-	DECLARE_FUNCTION1(int, MXPredForward, PredictorHandle)
-	DECLARE_FUNCTION4(int, MXPredGetOutputShape, PredictorHandle, mx_uint, mx_uint**, mx_uint*)
-	DECLARE_FUNCTION4(int, MXPredGetOutput, PredictorHandle, mx_uint, mx_float*, mx_uint)
+	//DECLARE_FUNCTION4(int, MXPredSetInput, PredictorHandle, const char*, const mx_float*, mx_uint)
+	int MXPredSetInput(PredictorHandle, const char*, const mx_float*, mx_uint);
 
-	DECLARE_FUNCTION1(int, MXPredFree, PredictorHandle)
+	//DECLARE_FUNCTION1(int, MXPredForward, PredictorHandle)
+	int MXPredForward(PredictorHandle);
+
+	//DECLARE_FUNCTION4(int, MXPredGetOutputShape, PredictorHandle, mx_uint, mx_uint**, mx_uint*)
+	int MXPredGetOutputShape(PredictorHandle, mx_uint, mx_uint**, mx_uint*);
+
+	//DECLARE_FUNCTION4(int, MXPredGetOutput, PredictorHandle, mx_uint, mx_float*, mx_uint)
+	int MXPredGetOutput(PredictorHandle, mx_uint, mx_float*, mx_uint);
+
+	//DECLARE_FUNCTION1(int, MXPredFree, PredictorHandle)
+	int MXPredFree(PredictorHandle);
+
+	virtual bool IsInit()
+	{
+		return (m_dllHandle != NULL);
+	}
+
 
 private:
 	//use the class declaration macro
-	DECLARE_CLASS(MXNet)
+	//DECLARE_CLASS(MXNet)
+	MXnet();
 };
